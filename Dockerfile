@@ -1,4 +1,3 @@
-FROM gcr.io/oss-vdb/worker
-
-COPY analyze.py /usr/local/bin/
-ENTRYPOINT ["analyze.py"]
+FROM golang:alpine
+RUN go install github.com/google/osv-scanner/cmd/osv-scanner@v1
+ENTRYPOINT ["osv-scanner"]
